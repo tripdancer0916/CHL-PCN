@@ -12,7 +12,7 @@ train, test = chainer.datasets.get_mnist()
 x_train, t_train = train._datasets
 x_test, t_test = test._datasets
 train_size = x_train.shape[0]
-batch_size = 10
+batch_size = 100
 
 x_train = cp.asarray(x_train)
 x_test = cp.asarray(x_test)
@@ -78,6 +78,6 @@ for i in range(10000):
         train_acc = accuracy(x_train, t_train)
         test_acc = accuracy(x_test, t_test)
         print("epoch:", int(i / iter_per_epoch), " train acc, test acc | " + str(train_acc) + ", " + str(test_acc))
-        print(h_forward)
-        print(h_backward)
+        # print(h_forward)
+        # print(h_backward)
         # print(delta_B2)
