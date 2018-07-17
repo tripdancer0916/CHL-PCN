@@ -50,7 +50,7 @@ def softmax(x):
 
 
 def predict(x):
-    h = softmax(cp.dot(x, W1))
+    h = relu(cp.dot(x, W1))
     output_ = softmax(cp.dot(h, W2))
     return output_
 
