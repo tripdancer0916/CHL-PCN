@@ -73,7 +73,11 @@ for i in range(10000):
     W1 -= delta_W1
     W2 -= delta_W2
     B2 -= delta_B2
+
     if i % iter_per_epoch == 0:
         train_acc = accuracy(x_train, t_train)
         test_acc = accuracy(x_test, t_test)
         print("epoch:", int(i / iter_per_epoch), " train acc, test acc | " + str(train_acc) + ", " + str(test_acc))
+        print(delta_W1)
+        print(delta_W2)
+        print(delta_B2)
