@@ -66,7 +66,7 @@ for i in range(10000):
     h_forward = relu(cp.dot(input, W1))
     output = relu(cp.dot(h_forward, W2))
     h_backward = relu(cp.dot(target, B2))
-    learning_rate = 0.05
+    learning_rate = 0.001
     delta_W1 = learning_rate*cp.dot(input.T, (h_backward-h_forward)/batch_size)
     delta_W2 = learning_rate*cp.dot(h_forward.T, (target-output)/batch_size)
     # delta_B2 = learning_rate*cp.dot(target.T, (h_forward-h_backward)/batch_size)
