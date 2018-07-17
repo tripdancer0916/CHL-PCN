@@ -63,9 +63,9 @@ for i in range(10000):
     data_index = cp.random.choice(train_size, batch_size)
     input = x_train[data_index]
     target = t_train[data_index]
-    h_forward = cp.tanh(cp.dot(input, W1))
+    h_forward = softmax(cp.dot(input, W1))
     output = softmax(cp.dot(h_forward, W2))
-    h_backward = cp.tanh(cp.dot(target, B2))
+    h_backward = softmax(cp.dot(target, B2))
     learning_rate = 0.05
     delta_W1 = learning_rate*cp.dot(input.T, (h_backward-h_forward)/batch_size)
     delta_W2 = learning_rate*cp.dot(h_forward.T, (target-output)/batch_size)
