@@ -69,7 +69,7 @@ for i in range(10000):
     learning_rate = 0.05
     delta_W1 = learning_rate*cp.dot(input.T, (h_backward-h_forward)/batch_size)
     delta_W2 = learning_rate*cp.dot(h_forward.T, (target-output)/batch_size)
-    delta_B2 = learning_rate*cp.dot(target.T, (output-target)/batch_size)
+    delta_B2 = learning_rate*cp.dot(target.T, (h_forward-h_backward)/batch_size)
     W1 -= delta_W1
     W2 -= delta_W2
     B2 -= delta_B2
