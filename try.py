@@ -86,6 +86,6 @@ for i in range(10000):
         train_acc = accuracy(x_train, t_train)
         test_acc = accuracy(x_test, t_test)
         print("epoch:", int(i / iter_per_epoch), " train acc, test acc | " + str(train_acc) + ", " + str(test_acc))
-        print(h_forward)
-        print(h_backward)
+        # print(h_forward)
+        # print(h_backward)
         # print(delta_B2)
