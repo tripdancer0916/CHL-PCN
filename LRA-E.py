@@ -133,9 +133,14 @@ class MLP:
         y1 = cp.tanh(h1 - beta*cp.dot(e2, self.B2))
         e1 = -2*(y1-z1)
 
+        """
         delta_Wf3 = cp.dot(z2.T, e3*h3*(1-h3))
         delta_Wf2 = cp.dot(z1.T, e2*tanh_grad(h2))
         delta_Wf1 = cp.dot(x.T, e1*tanh_grad(h1))
+        """
+        delta_Wf3 = cp.dot(z2.T, e3)
+        delta_Wf2 = cp.dot(z1.T, e2)
+        delta_Wf1 = cp.dot(x.T, e1)
         delta_B3 = -gamma * delta_Wf3.T
         delta_B2 = -gamma * delta_Wf2.T
         # print(delta_Wf3.shape)
@@ -167,8 +172,8 @@ for i in range(100000):
     # if i % iter_per_epoch == 0:
     #     print_flag = True
     mlp.lra_e(x_batch, t_batch, 0.1, 0.8, print_flag)
-    train_acc = mlp.accuracy(x_train, t_train)
-    print(train_acc)
+    # train_acc = mlp.accuracy(x_train, t_train)
+    # print(train_acc)
 
     if i % iter_per_epoch == 0:
         train_acc = mlp.accuracy(x_train, t_train)
