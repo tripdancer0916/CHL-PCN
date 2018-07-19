@@ -164,9 +164,11 @@ for i in range(100000):
     # mlp.gradient(x_batch, t_batch)
     # mlp.feedback_alignment(x_batch,t_batch)
     print_flag = False
-    if i % iter_per_epoch == 0:
-        print_flag = True
+    # if i % iter_per_epoch == 0:
+    #     print_flag = True
     mlp.lra_e(x_batch, t_batch, 0.1, 0.8, print_flag)
+    train_acc = mlp.accuracy(x_train, t_train)
+    print(train_acc)
 
     if i % iter_per_epoch == 0:
         train_acc = mlp.accuracy(x_train, t_train)
