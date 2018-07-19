@@ -136,6 +136,7 @@ class MLP:
         delta_Wf1 = cp.dot(x.T, e1*tanh_grad(h1))
         delta_B3 = -gamma * delta_Wf3.T
         delta_B2 = -gamma * delta_Wf2.T
+        # print(delta_Wf3.shape)
         print(delta_Wf3)
         alpha = 0.05
         self.W_f1 -= alpha * delta_Wf1
