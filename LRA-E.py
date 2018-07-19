@@ -117,7 +117,7 @@ class MLP:
         self.W_f2 -= alpha * delta_Wf2
         self.W_f3 -= alpha * delta_Wf3
 
-    def lra_e(self, x, target, beta, gamma):
+    def lra_e(self, x, target, beta, gamma, print_flag=False):
         h1 = cp.dot(x, self.W_f1)
         z1 = cp.tanh(h1)
         h2 = cp.dot(z1, self.W_f2)
@@ -126,6 +126,8 @@ class MLP:
         output = softmax(h3)
 
         e3 = -target/output
+        if print_flag:
+            print(e3)
         y2 = cp.tanh(h2 - beta*cp.dot(e3, self.B3))
         e2 = -2*(y2-z2)
         y1 = cp.tanh(h1 - beta*cp.dot(e2, self.B2))
@@ -137,7 +139,7 @@ class MLP:
         delta_B3 = -gamma * delta_Wf3.T
         delta_B2 = -gamma * delta_Wf2.T
         # print(delta_Wf3.shape)
-        print(delta_Wf3)
+        # print(delta_Wf3)
         alpha = 0.05
         self.W_f1 -= alpha * delta_Wf1
         self.W_f2 -= alpha * delta_Wf2
@@ -161,7 +163,10 @@ for i in range(100000):
     t_batch = t_train[batch_mask]
     # mlp.gradient(x_batch, t_batch)
     # mlp.feedback_alignment(x_batch,t_batch)
-    mlp.lra_e(x_batch, t_batch, 0.1, 0.8)
+    print_flag = False
+    if i % iter_per_epoch == 0:
+        print_flag = True
+    mlp.lra_e(x_batch, t_batch, 0.1, 0.8, print_flag)
 
     if i % iter_per_epoch == 0:
         train_acc = mlp.accuracy(x_train, t_train)
