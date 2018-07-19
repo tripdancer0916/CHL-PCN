@@ -141,11 +141,11 @@ class MLP:
         # print(delta_Wf3.shape)
         # print(delta_Wf3)
         alpha = 0.05
-        self.W_f1 -= alpha * delta_Wf1
-        self.W_f2 -= alpha * delta_Wf2
-        self.W_f3 -= alpha * delta_Wf3
-        self.B3 -= alpha * delta_B3
-        self.B2 -= alpha * delta_B2
+        self.W_f1 += alpha * delta_Wf1
+        self.W_f2 += alpha * delta_Wf2
+        self.W_f3 += alpha * delta_Wf3
+        self.B3 += alpha * delta_B3
+        self.B2 += alpha * delta_B2
 
 
 mlp = MLP()
