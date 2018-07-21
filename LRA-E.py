@@ -152,7 +152,6 @@ class MLP:
         self.B3 -= alpha * delta_B3
         self.B2 -= alpha * delta_B2
 
-
 mlp = MLP()
 train_loss_list = []
 test_loss_list = []
